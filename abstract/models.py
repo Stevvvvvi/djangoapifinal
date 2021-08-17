@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class AbstractModel(models.Model):
     created     = models.DateTimeField(editable=False)
-    modified    = models.DateTimeField()
+    modified    = models.DateTimeField(editable=False)
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
         if not self.id:
