@@ -98,3 +98,9 @@ class MyUser(AbstractBaseUser, AbstractModel, PermissionsMixin):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+    test='asdfasdf'
+
+    @property
+    def token():
+        pass
+
