@@ -46,6 +46,7 @@ class UserRegisterView(APIView):
     permission_classes=[MyCustomPermission]
     # @action(detail=True, methods=['post'], authentication_classes = [], permission_classes=[])
     def post(self, request,format=None):
+        print(request.user)
         serializer = UserRegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
