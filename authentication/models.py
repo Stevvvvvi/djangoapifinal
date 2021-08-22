@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.mail import send_mail
 from abstract.models import AbstractModel
@@ -8,6 +9,7 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, UserManager
 from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
+import jwt
 # Create your models here.
 
 class MyUserManager(UserManager):
@@ -101,6 +103,7 @@ class MyUser(AbstractBaseUser, AbstractModel, PermissionsMixin):
     test='asdfasdf'
 
     @property
-    def token():
-        pass
+    def token(self):
+        exp=timezone.now()+timezone.timedelta(minutes=15)
+        return jwt.encode({"email": f"{self.email}","exp": exp}, settings.SECRET_KEY, algorithm="HS256")
 
