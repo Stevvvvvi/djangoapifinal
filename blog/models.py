@@ -10,4 +10,4 @@ class Blog(AbstractModel):
     ,help_text=_('title of the post'))
     content = models.TextField(blank=False,help_text=_('content of the post'))
     tags = models.TextField(blank=True,help_text=_('tags of the post'))
-    owner = models.ForeignKey(MyUser,on_delete=models.CASCADE)
+    owner = models.ForeignKey(MyUser,related_name="blogs",on_delete=models.CASCADE)

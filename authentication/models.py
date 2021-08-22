@@ -104,6 +104,6 @@ class MyUser(AbstractBaseUser, AbstractModel, PermissionsMixin):
 
     @property
     def token(self):
-        exp=timezone.now()+timezone.timedelta(minutes=15)
+        exp=timezone.now()+timezone.timedelta(minutes=40)
         return jwt.encode({"email": f"{self.email}","exp": exp}, settings.SECRET_KEY, algorithm="HS256")
 

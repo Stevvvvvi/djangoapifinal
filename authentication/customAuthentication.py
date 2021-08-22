@@ -44,7 +44,7 @@ class MyAuthentication(authentication.BaseAuthentication):
         except jwt.DecodeError as ex:
             raise exceptions.AuthenticationFailed(
                 'Token is invalid,')
-
+        print((user, token))
         return (user, token)
 
 
