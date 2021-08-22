@@ -70,7 +70,7 @@ class UserLoginView(APIView):
             # if serializer.is_valid():
             if not user.is_superuser:
                 user.last_login=timezone.now()
-                user.save()
+                user.save(using=MyUser.objects._db)
             serializer = UserLoginSerializer(user)
             return Response(serializer.data, status=status.HTTP_200_OK)
             # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
